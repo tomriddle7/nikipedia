@@ -20,14 +20,28 @@ const Input = styled.input`
 `;
 
 const Search = () => {
-    return (
-      <>
-        <Form>
-          <Input
-              placeholder="Search"
-          />
-        </Form>
-      </>
-    )
+  const [searchTerm, setsearchTerm] = useState('');
+
+  const UpdateTerm = event => {
+    setsearchTerm(event.target.value);
   }
-  export default Search
+
+  const HandleSubmit = event => {
+    event.preventDefault();
+    window.location = `/${searchTerm}`
+    setsearchTerm('');
+  }
+
+  return (
+    <>
+      <Form onSubmit={HandleSubmit}>
+        <Input
+            placeholder='Search'
+            value={searchTerm}
+            onChange={UpdateTerm}
+        />
+      </Form>
+    </>
+  )
+}
+export default Search
