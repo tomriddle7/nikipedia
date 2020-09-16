@@ -25,13 +25,19 @@ const Nav = styled.nav`
   }
 `
 
+const Menu = styled.div`
+  display: flex;
+`
+
 const Navbar = () => {
   return (
     <Nav>
-      <div className='logo'>
-        <img src={require("../../assets/m.svg")}/>
-      </div>
-      <Burger />
+      <Menu>
+        <div className='logo'>
+          <img src={require("../../assets/m.svg")}/>
+        </div>
+        <Burger />
+      </Menu>
       <Search />
     </Nav>
   )
