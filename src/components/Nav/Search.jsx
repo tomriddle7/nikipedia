@@ -28,7 +28,7 @@ const Search = () => {
 
   const HandleSubmit = event => {
     event.preventDefault();
-    window.location = `/#/w/${searchTerm}`
+    window.location = `/nikipedia/#/w/${searchTerm}`
     setsearchTerm('');
   }
 

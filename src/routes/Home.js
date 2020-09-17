@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { dbService } from 'fbase';
+import { Link } from "react-router-dom";
 import ReactMarkdown from 'react-markdown';
 import styled from 'styled-components';
 
@@ -35,7 +36,7 @@ const Home = (props) => {
   useEffect(() => {
     getDoc();
   }, [props.match.params]);
-  console.log(doc);
+  // console.log(doc);
 
   return (
     <div>

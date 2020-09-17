@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { dbService } from 'fbase';
+import { Link } from "react-router-dom";
 import styled from 'styled-components';
 
-const Change = styled.div`
+const Change = styled.span`
   display: flex;
   justify-content: space-between;
 `;
@@ -21,7 +22,7 @@ const RecentChanges = (props) => {
         setNweets(nweetArray);
       });
   }, []);
-  console.log(nweets);
+  // console.log(nweets);
 
   return (
     <div>
@@ -29,7 +30,7 @@ const RecentChanges = (props) => {
       <div style={{ marginTop: 30 }}>
         {nweets.map((nweet, index) => (
           <Change key={index}>
-            <h4 onClick={() => {window.location = '/#/w/' + nweet.id}}>{nweet.id}</h4>
+            <Link to={`/w/${nweet.id}`}>{nweet.id}</Link>
             <span>{nweet.updatedAt.toDate().toDateString() + ' ' + nweet.updatedAt.toDate().toLocaleTimeString('ko-KR')}</span>
           </Change>
         ))}
