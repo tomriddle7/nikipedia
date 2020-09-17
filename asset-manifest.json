@@ -1,20 +1,20 @@
 {
   "files": {
-    "main.js": "/nikipedia/static/js/main.623b8cea.chunk.js",
-    "main.js.map": "/nikipedia/static/js/main.623b8cea.chunk.js.map",
+    "main.js": "/nikipedia/static/js/main.4c607b7f.chunk.js",
+    "main.js.map": "/nikipedia/static/js/main.4c607b7f.chunk.js.map",
     "runtime-main.js": "/nikipedia/static/js/runtime-main.b994f828.js",
     "runtime-main.js.map": "/nikipedia/static/js/runtime-main.b994f828.js.map",
-    "static/js/2.c37f9186.chunk.js": "/nikipedia/static/js/2.c37f9186.chunk.js",
-    "static/js/2.c37f9186.chunk.js.map": "/nikipedia/static/js/2.c37f9186.chunk.js.map",
+    "static/js/2.bb08d377.chunk.js": "/nikipedia/static/js/2.bb08d377.chunk.js",
+    "static/js/2.bb08d377.chunk.js.map": "/nikipedia/static/js/2.bb08d377.chunk.js.map",
     "index.html": "/nikipedia/index.html",
-    "precache-manifest.8b01c37063c4acc576a1955cc9228573.js": "/nikipedia/precache-manifest.8b01c37063c4acc576a1955cc9228573.js",
+    "precache-manifest.ad95c79793bfaf42d0563876c9fdb50d.js": "/nikipedia/precache-manifest.ad95c79793bfaf42d0563876c9fdb50d.js",
     "service-worker.js": "/nikipedia/service-worker.js",
-    "static/js/2.c37f9186.chunk.js.LICENSE.txt": "/nikipedia/static/js/2.c37f9186.chunk.js.LICENSE.txt",
+    "static/js/2.bb08d377.chunk.js.LICENSE.txt": "/nikipedia/static/js/2.bb08d377.chunk.js.LICENSE.txt",
     "static/media/m.svg": "/nikipedia/static/media/m.5c4dc336.svg"
   },
   "entrypoints": [
     "static/js/runtime-main.b994f828.js",
-    "static/js/2.c37f9186.chunk.js",
-    "static/js/main.623b8cea.chunk.js"
+    "static/js/2.bb08d377.chunk.js",
+    "static/js/main.4c607b7f.chunk.js"
   ]
 }
