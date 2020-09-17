@@ -28,7 +28,7 @@ const Search = () => {
 
   const HandleSubmit = event => {
     event.preventDefault();
-    window.location = `/${searchTerm}`
+    window.location = `/#/w/${searchTerm}`
     setsearchTerm('');
   }
 

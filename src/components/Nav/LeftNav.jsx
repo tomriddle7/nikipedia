@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link, withRouter } from "react-router-dom";
 import styled from 'styled-components';
 
 const Ul = styled.ul`
@@ -25,12 +26,29 @@ const Ul = styled.ul`
   }
 `;
 
+const SLink = styled(Link)`
+  text-decoration: none;
+  color: #000;
+  @media (max-width: 768px) {
+    color: #fff;
+  }
+`;
+
 const LeftNav = ({ open }) => {
   return (
     <Ul open={open}>
-      <li>Home</li>
-      <li>Sign In</li>
-      <li>Sign Up</li>
+      <li>
+        <SLink to="/">Home</SLink>
+      </li>
+      <li>
+        <SLink to="/RecentChanges">Recent Changes</SLink>
+      </li>
+      <li>
+        <SLink to="/">Sign In</SLink>
+      </li>
+      <li>
+        <SLink to="/">Sign Up</SLink>
+      </li>
     </Ul>
   )
 }
