@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "d558033a3c0b69b645189884be9719e1",
+    "revision": "d5396f4a5f0c952bb76104c7ef88c807",
     "url": "/nikipedia/index.html"
   },
   {
@@ -12,8 +12,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/nikipedia/static/js/2.af15e37a.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "05903f37256f7505a802",
-    "url": "/nikipedia/static/js/main.6c49b4c1.chunk.js"
+    "revision": "966e3da9a61b0f89be34",
+    "url": "/nikipedia/static/js/main.4355a8bc.chunk.js"
   },
   {
     "revision": "a7ed87b102d7e2e6b642",
