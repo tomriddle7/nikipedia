@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { dbService, authService } from 'fbase';
+import { firebaseInstance, dbService, authService } from 'fbase';
 import Auth from './Auth';
 import styled from 'styled-components';
 
@@ -20,14 +20,14 @@ const Edit = (props) => {
   const getDoc = async () => {
     const title = props.match.params.id;
     const document = await dbService.collection('pages').doc(title).get();
-    let source = '';
+    let content = '';
     if (document.data()) {
-      source =  document.data().content.replace(/\\n/gi, '\n');
+      content =  document.data().content.replace(/\\n/gi, '\n');
     }
     else {
-      source = '해당 문서를 찾을 수 없습니다.';
+      content = '';
     }
-    setDoc({ title, 'content': source });
+    setDoc({ title, content });
   };
   
   const onChange = (event) => {
@@ -40,6 +40,7 @@ const Edit = (props) => {
     event.preventDefault();
     await dbService.doc(`pages/${doc.title}`).update({
       content: doc.content,
+      history: firebaseInstance.firestore.FieldValue.arrayUnion({ 'name': 'John', 'timeStamp': firebaseInstance.firestore.Timestamp.now() })
     });
     window.location = `/nikipedia/#/w/${doc.title}`;
   };

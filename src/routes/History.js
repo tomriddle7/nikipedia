@@ -9,29 +9,21 @@ const Title = styled.span`
   justify-content: space-between;
 `;
 
-const CodeBlock = (props) => {
-  return (
-    <pre style={{background: '#000', color: '#fff', padding: 10}}>
-      <code>
-        {props.value}
-      </code>
-    </pre>
-  );
-}
+const Change = styled.span`
+  display: flex;
+  justify-content: space-between;
+`;
 
-const Home = (props) => {
+const History = (props) => {
   const [doc, setDoc] = useState({});
   const getDoc = async () => {
     const title = props.match.params.id;
     const document = await dbService.collection('pages').doc(title).get();
-    let content = '';
+    let history = [];
     if (document.data()) {
-      content =  document.data().content.replace(/\\n/gi, '\n');
+      history =  document.data().history;
     }
-    else {
-      content = '해당 문서를 찾을 수 없습니다.';
-    }
-    setDoc({ title, content });
+    setDoc({ title, history });
   };
   useEffect(() => {
     getDoc();
@@ -44,22 +36,18 @@ const Home = (props) => {
         <h1>{doc.title}</h1>
         <div>
           <Link to={`/edit/${doc.title}`}>Edit</Link>
-          <Link to={`/history/${doc.title}`}>History</Link>
+          <Link to={`/w/${doc.title}`}>Doc</Link>
         </div>
       </Title>
       <div style={{ marginTop: 30 }}>
-        <ReactMarkdown
-        source={doc.content}
-        skipHtml={false}
-        escapeHtml={false}
-        parserOptions={{
-          commonmark: true
-        }} 
-        renderers={{
-          code: CodeBlock
-        }}/>
+        {doc.history ? doc.history.map((his, index) => (
+          <Change key={index}>
+            <span>{his.name}</span>
+            <span>{his.timeStamp.toDate().toDateString() + ' ' + his.timeStamp.toDate().toLocaleTimeString('ko-KR')}</span>
+          </Change>
+        )) : ''}
       </div>
     </div>
   );
 };
-export default Home;
+export default History;

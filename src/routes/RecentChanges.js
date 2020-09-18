@@ -31,7 +31,10 @@ const RecentChanges = (props) => {
         {nweets.map((nweet, index) => (
           <Change key={index}>
             <Link to={`/w/${nweet.id}`}>{nweet.id}</Link>
-            <span>{nweet.updatedAt.toDate().toDateString() + ' ' + nweet.updatedAt.toDate().toLocaleTimeString('ko-KR')}</span>
+            <div>
+              <span>{nweet.history[nweet.history.length - 1].name}</span>
+              <span>{nweet.history[nweet.history.length - 1].timeStamp.toDate().toDateString() + ' ' + nweet.history[nweet.history.length - 1].timeStamp.toDate().toLocaleTimeString('ko-KR')}</span>
+            </div>
           </Change>
         ))}
       </div>
