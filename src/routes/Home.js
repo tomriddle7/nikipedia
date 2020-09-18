@@ -43,7 +43,7 @@ const Home = (props) => {
       <Title>
         <h1>{doc.title}</h1>
         <div>
-          <button>Edit</button>
+          <Link to={`/edit/${doc.title}`}>Edit</Link>
           <button>History</button>
         </div>
       </Title>
