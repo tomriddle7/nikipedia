@@ -6,7 +6,7 @@ import LeftNav from './LeftNav';
 const StyledBurger = styled.div`
   width: 2rem;
   height: 2rem;
-  position: fixed;
+  position: absolute;
   top: 12px;
   left: 20px;
   z-index: 20;
