@@ -34,20 +34,24 @@ const SLink = styled(Link)`
   }
 `;
 
-const LeftNav = ({ open }) => {
+const LeftNav = (props) => {
+  const CloseNav = (value) => {
+    props.onClick(value);
+  }
+
   return (
-    <Ul open={open}>
+    <Ul open={props.open}>
       <li>
-        <SLink to="/">Home</SLink>
+        <SLink to="/" onClick={() => CloseNav(false)}>Home</SLink>
       </li>
       <li>
-        <SLink to="/RecentChanges">Recent Changes</SLink>
+        <SLink to="/RecentChanges" onClick={() => CloseNav(false)}>Recent Changes</SLink>
       </li>
       <li>
-        <SLink to="/">Sign In</SLink>
+        <SLink to="/" onClick={() => CloseNav(false)}>Sign In</SLink>
       </li>
       <li>
-        <SLink to="/">Sign Up</SLink>
+        <SLink to="/" onClick={() => CloseNav(false)}>Sign Up</SLink>
       </li>
     </Ul>
   )
