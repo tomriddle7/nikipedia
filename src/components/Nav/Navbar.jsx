@@ -34,7 +34,7 @@ const Navbar = () => {
     <Nav>
       <Menu>
         <div className='logo'>
-          <img src={require("../../assets/m.svg")}/>
+          <img src={require("../../assets/ico-wiki.png")}/>
         </div>
         <Burger />
       </Menu>

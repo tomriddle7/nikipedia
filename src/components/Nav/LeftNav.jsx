@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, withRouter } from "react-router-dom";
+import { Link } from "react-router-dom";
 import styled from 'styled-components';
 
 const Ul = styled.ul`
@@ -12,7 +12,7 @@ const Ul = styled.ul`
   @media (max-width: 768px) {
     flex-flow: column nowrap;
     background-color: #38b48b;
-    position: absolute;
+    position: fixed;
     transform: ${({ open }) => open ? 'translateX(0)' : 'translateX(-100%)'};
     top: 0;
     left: 0;
