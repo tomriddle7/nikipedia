@@ -7,17 +7,22 @@ import Edit from 'routes/Edit';
 import History from 'routes/History';
 import RecentChanges from 'routes/RecentChanges';
 
-const AppRouter = () => {
+const AppRouter = ({ refreshUser, isLoggedIn, userObj }) => {
   return (
     <Router>
-      <Navbar />
+      <Navbar isLoggedIn={isLoggedIn}/>
         <Switch>
+          <Route path='/login' component={Auth} />
           <Route path='/w/:id' component={Home} />
-          <Route path='/auth' component={Auth} />
-          <Route path='/edit/:id' component={Edit} />
           <Route path='/history/:id' component={History} />
-          <Route path='/RecentChanges' component={RecentChanges} />
+          <Route path='/recentChanges' component={RecentChanges} />
+          <Route path='/edit/:id' render={props =>
+            isLoggedIn
+            ? <Edit {...props} userObj={userObj} />
+            : <Redirect to="/login"/>}
+          />
           <Redirect from='*' to='/w/Home' />
+
         </Switch>
     </Router>
   );

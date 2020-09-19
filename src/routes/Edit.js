@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { firebaseInstance, dbService, authService } from 'fbase';
-import Auth from './Auth';
+import { firebaseInstance, dbService } from 'fbase';
 import styled from 'styled-components';
 
 const Title = styled.span`
@@ -13,10 +12,8 @@ const Doc = styled.textarea`
   height: 50vh;
 `;
 
-const Edit = (props) => {
+const Edit = (props, userObj) => {
   const [doc, setDoc] = useState({});
-  const [init, setInit] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const getDoc = async () => {
     const title = props.match.params.id;
     const document = await dbService.collection('pages').doc(title).get();
@@ -38,44 +35,48 @@ const Edit = (props) => {
   };
   const onSubmit = async (event) => {
     event.preventDefault();
-    await dbService.doc(`pages/${doc.title}`).update({
-      content: doc.content,
-      history: firebaseInstance.firestore.FieldValue.arrayUnion({ 'name': 'John', 'timeStamp': firebaseInstance.firestore.Timestamp.now() })
-    });
+    try {
+      await dbService.doc(`pages/${doc.title}`).update({
+        content: doc.content,
+        updatedAt: firebaseInstance.firestore.Timestamp.now(),
+        history: firebaseInstance.firestore.FieldValue.arrayUnion({ 'name': 'John', 'timeStamp': firebaseInstance.firestore.Timestamp.now() })
+      });
+    }
+    catch {
+      try {
+        await dbService.doc(`pages/${doc.title}`).set({
+          content: doc.content,
+          updatedAt: firebaseInstance.firestore.Timestamp.now(),
+          history: [{ 'name': 'John', 'timeStamp': firebaseInstance.firestore.Timestamp.now() }]
+        });
+      }
+      catch(e) {
+        console.log(e);
+      }
+    }
     window.location = `/nikipedia/#/w/${doc.title}`;
   };
 
   useEffect(() => {
-    authService.onAuthStateChanged((user) => {
-      if (user) {
-        setIsLoggedIn(true);
-        getDoc();
-      } else {
-        setIsLoggedIn(false);
-      }
-      setInit(true);
-    });
-  }, []);
+    getDoc();
+  }, [props.match.params]);
+  // console.log(props.match.path);
 
   return (
-      <>
-      {init ? (isLoggedIn ? 
-      <div>
-        <Title>
-          <h1>{doc.title}</h1>
-        </Title>
-        <div style={{ marginTop: 30 }}>
-          <Doc
-            defaultValue={doc.content}
-            onChange={onChange}
-          />
-        </div>
-        <div>
-          <button onClick={onSubmit}>저장</button>
-        </div>
+    <div>
+      <Title>
+        <h1>{doc.title}</h1>
+      </Title>
+      <div style={{ marginTop: 30 }}>
+        <Doc
+          defaultValue={doc.content}
+          onChange={onChange}
+        />
       </div>
-       : <Auth />) : "로그인 중..."}
-      </>
+      <div>
+        <button onClick={onSubmit}>저장</button>
+      </div>
+    </div>
   );
 }
 

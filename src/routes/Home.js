@@ -25,13 +25,16 @@ const Home = (props) => {
     const title = props.match.params.id;
     const document = await dbService.collection('pages').doc(title).get();
     let content = '';
+    let exist = false;
     if (document.data()) {
       content =  document.data().content.replace(/\\n/gi, '\n');
+      exist = true;
     }
     else {
       content = '해당 문서를 찾을 수 없습니다.';
+      exist = false;
     }
-    setDoc({ title, content });
+    setDoc({ title, content, exist });
   };
   useEffect(() => {
     getDoc();
@@ -58,6 +61,7 @@ const Home = (props) => {
         renderers={{
           code: CodeBlock
         }}/>
+        {!doc.exist && <Link to={`/edit/${doc.title}`}>문서 생성하기</Link>}
       </div>
     </div>
   );

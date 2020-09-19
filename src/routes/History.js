@@ -28,7 +28,7 @@ const History = (props) => {
   useEffect(() => {
     getDoc();
   }, [props.match.params]);
-  // console.log(doc);
+  console.log(doc);
 
   return (
     <div>
@@ -40,12 +40,12 @@ const History = (props) => {
         </div>
       </Title>
       <div style={{ marginTop: 30 }}>
-        {doc.history ? doc.history.map((his, index) => (
+        {doc.history && doc.history.length > 0 && doc.history.map((his, index) => (
           <Change key={index}>
             <span>{his.name}</span>
             <span>{his.timeStamp.toDate().toDateString() + ' ' + his.timeStamp.toDate().toLocaleTimeString('ko-KR')}</span>
           </Change>
-        )) : ''}
+        ))}
       </div>
     </div>
   );

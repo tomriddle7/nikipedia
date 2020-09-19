@@ -9,31 +9,31 @@ const Change = styled.span`
 `;
 
 const RecentChanges = (props) => {
-  const [nweets, setNweets] = useState([]);
+  const [changes, setChanges] = useState([]);
   useEffect(() => {
     dbService
       .collection("pages")
       .orderBy("updatedAt", "desc")
       .onSnapshot((snapshot) => {
-        const nweetArray = snapshot.docs.map((doc) => ({
+        const changeArray = snapshot.docs.map((doc) => ({
           id: doc.id,
           ...doc.data(),
         }));
-        setNweets(nweetArray);
+        setChanges(changeArray);
       });
   }, []);
-  // console.log(nweets);
+  // console.log(changes);
 
   return (
     <div>
       <h1>Recent Changes</h1>
       <div style={{ marginTop: 30 }}>
-        {nweets.map((nweet, index) => (
+        {changes.map((cng, index) => (
           <Change key={index}>
-            <Link to={`/w/${nweet.id}`}>{nweet.id}</Link>
+            <Link to={`/w/${cng.id}`}>{cng.id}</Link>
             <div>
-              <span>{nweet.history[nweet.history.length - 1].name}</span>
-              <span>{nweet.history[nweet.history.length - 1].timeStamp.toDate().toDateString() + ' ' + nweet.history[nweet.history.length - 1].timeStamp.toDate().toLocaleTimeString('ko-KR')}</span>
+              <span>{cng.history[cng.history.length - 1].name}</span>
+              <span>{cng.history[cng.history.length - 1].timeStamp.toDate().toDateString() + ' ' + cng.history[cng.history.length - 1].timeStamp.toDate().toLocaleTimeString('ko-KR')}</span>
             </div>
           </Change>
         ))}
