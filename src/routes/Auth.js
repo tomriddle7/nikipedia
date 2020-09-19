@@ -21,10 +21,12 @@ const Auth = (props) => {
     try {
       let data;
       if (newAccount) {
-        data = await authService.createUserWithEmailAndPassword(
-          email,
-          password
-        );
+        data = await authService.createUserWithEmailAndPassword(email, password)
+        .then(user => {
+          authService.currentUser.updateProfile({
+            displayName: email.replace(/\@.*/gi, '')
+          });
+        });
       } else {
         data = await authService.signInWithEmailAndPassword(email, password);
       }
