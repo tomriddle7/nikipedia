@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/nikipedia/precache-manifest.da5476678cacb52612254ce5d9f1c506.js"
+  "/nikipedia/precache-manifest.2b7a54266a1d2ba97392857b9c962558.js"
 );
 
 self.addEventListener('message', (event) => {
