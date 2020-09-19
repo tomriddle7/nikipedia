@@ -1,0 +1,92 @@
+input {
+    all: unset;
+    appearance: none;
+    box-sizing: border-box;
+  }
+  
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  }
+
+.container {
+    width: 100%;
+    max-width: 320px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Auth */
+
+.authContainer {
+    display: flex;
+    flex-direction: column;
+    height: 50vh;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .authBtns {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 320px;
+  }
+  
+  .authBtn {
+    cursor: pointer;
+    border-radius: 20px;
+    border: none;
+    padding: 10px 0px;
+    font-size: 12px;
+    text-align: center;
+    width: 150px;
+    background: #38b48b;
+    color: white;
+    cursor: pointer;
+  }
+
+  /* AuthForm */
+
+.authInput {
+    max-width: 320px;
+    width: 100%;
+    padding: 10px;
+    border-radius: 30px;
+    background-color: #eeeeee;
+    margin-bottom: 10px;
+    font-size: 12px;
+    color: black;
+    box-sizing: content-box;
+  }
+  
+  .authSubmit {
+    text-align: center;
+    background: #38b48b;
+    color: white;
+    margin-top: 10;
+    box-sizing: content-box;
+    cursor: pointer;
+  }
+  
+  .authError {
+    color: tomato;
+    text-align: center;
+    font-weight: 500;
+    font-size: 12px;
+  }
+  
+  .authSwitch {
+    color: #38b48b;
+    cursor: pointer;
+    margin-top: 10px;
+    margin-bottom: 50px;
+    display: block;
+    font-size: 12px;
+    text-decoration: underline;
+  }

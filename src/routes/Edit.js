@@ -2,9 +2,26 @@ import React, { useState, useEffect } from "react";
 import { firebaseInstance, dbService } from 'fbase';
 import styled from 'styled-components';
 
-const Title = styled.span`
+const Title = styled.div`
   display: flex;
   justify-content: space-between;
+  align-items: center;
+`;
+
+const LButton = styled.button`
+  background-color: #38b48b;
+  color: #fff;
+  text-align: center;
+  border: 0;
+  box-shadow: none;
+  padding: 2px 6px 2px 6px;
+  margin-top: 10px;
+  border-radius: 6px;
+`;
+
+const Body = styled.div`
+  padding: 0px 16px;
+  margin-top: 30px;
 `;
 
 const Doc = styled.textarea`
@@ -74,16 +91,16 @@ const Edit = (props) => {
       <Title>
         <h1>{doc.title}</h1>
       </Title>
-      <div style={{ marginTop: 30 }}>
+      <Body>
         <Doc
           defaultValue={doc.content}
           onChange={onChange}
           disabled={doc.superauth}
         />
         <div>
-          {doc.superauth ? <p>수정권한이 부족합니다.</p> : <button onClick={onSubmit}>저장</button>}
+          {doc.superauth ? <p>수정권한이 부족합니다.</p> : <LButton onClick={onSubmit}>저장</LButton>}
         </div>
-      </div>
+      </Body>
     </div>
   );
 }

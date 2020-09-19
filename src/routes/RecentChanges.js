@@ -3,9 +3,23 @@ import { dbService } from 'fbase';
 import { Link } from "react-router-dom";
 import styled from 'styled-components';
 
+const Body = styled.div`
+  padding: 0px 16px;
+  margin-top: 30px;
+`;
+
 const Change = styled.span`
   display: flex;
   justify-content: space-between;
+`;
+
+const Span = styled.span`
+  margin: 0px 5px;
+`;
+
+const SLink = styled(Link)`
+  cursor: pointer;
+  text-decoration: none;
 `;
 
 const RecentChanges = (props) => {
@@ -27,17 +41,17 @@ const RecentChanges = (props) => {
   return (
     <div>
       <h1>Recent Changes</h1>
-      <div style={{ marginTop: 30 }}>
+      <Body>
         {changes.map((cng, index) => (
           <Change key={index}>
-            <Link to={`/w/${cng.id}`}>{cng.id}</Link>
+            <SLink to={`/w/${cng.id}`}>{cng.id}</SLink>
             <div>
-              <span>{cng.history[cng.history.length - 1].name}</span>
-              <span>{cng.history[cng.history.length - 1].timeStamp.toDate().toDateString() + ' ' + cng.history[cng.history.length - 1].timeStamp.toDate().toLocaleTimeString('ko-KR')}</span>
+              <Span>{cng.history[cng.history.length - 1].name}</Span>
+              <Span>{cng.history[cng.history.length - 1].timeStamp.toDate().toDateString() + ' ' + cng.history[cng.history.length - 1].timeStamp.toDate().toLocaleTimeString('ko-KR')}</Span>
             </div>
           </Change>
         ))}
-      </div>
+      </Body>
     </div>
   );
 };
