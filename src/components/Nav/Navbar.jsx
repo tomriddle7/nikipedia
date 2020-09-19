@@ -29,14 +29,14 @@ const Menu = styled.div`
   display: flex;
 `
 
-const Navbar = () => {
+const Navbar = (props) => {
   return (
     <Nav>
       <Menu>
         <div className='logo'>
           <img src={require("../../assets/ico-wiki.png")}/>
         </div>
-        <Burger />
+        <Burger isLoggedIn={props.isLoggedIn} />
       </Menu>
       <Search />
     </Nav>

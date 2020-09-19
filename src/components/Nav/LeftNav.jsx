@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from "react-router-dom";
+import { authService } from "fbase";
 import styled from 'styled-components';
 
 const Ul = styled.ul`
@@ -34,9 +35,14 @@ const SLink = styled(Link)`
   }
 `;
 
-const LeftNav = (props) => {
+const LeftNav = (props, isLoggedIn) => {
   const CloseNav = (value) => {
     props.onClick(value);
+  }
+
+  const onLogOutClick = (value) => {
+    props.onClick(value);
+    authService.signOut();
   }
 
   return (
@@ -45,13 +51,13 @@ const LeftNav = (props) => {
         <SLink to="/" onClick={() => CloseNav(false)}>Home</SLink>
       </li>
       <li>
-        <SLink to="/RecentChanges" onClick={() => CloseNav(false)}>Recent Changes</SLink>
+        <SLink to="/recentChanges" onClick={() => CloseNav(false)}>Recent Changes</SLink>
       </li>
       <li>
-        <SLink to="/" onClick={() => CloseNav(false)}>Sign In</SLink>
-      </li>
-      <li>
-        <SLink to="/" onClick={() => CloseNav(false)}>Sign Up</SLink>
+        {props.isLoggedIn
+        ? <SLink to="/" onClick={() => onLogOutClick(false)}>Log Out</SLink>
+        : <SLink to="/login" onClick={() => CloseNav(false)}>Log In</SLink>
+        }
       </li>
     </Ul>
   )

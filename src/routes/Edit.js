@@ -10,21 +10,25 @@ const Title = styled.span`
 const Doc = styled.textarea`
   width: 100%;
   height: 50vh;
+  resize: none;
 `;
 
-const Edit = (props, userObj) => {
+const Edit = (props) => {
   const [doc, setDoc] = useState({});
   const getDoc = async () => {
     const title = props.match.params.id;
     const document = await dbService.collection('pages').doc(title).get();
     let content = '';
+    let superauth = true;
     if (document.data()) {
       content =  document.data().content.replace(/\\n/gi, '\n');
+      superauth = document.data().superauth;
     }
     else {
       content = '';
+      superauth = false;
     }
-    setDoc({ title, content });
+    setDoc({ title, content, superauth });
   };
   
   const onChange = (event) => {
@@ -35,11 +39,14 @@ const Edit = (props, userObj) => {
   };
   const onSubmit = async (event) => {
     event.preventDefault();
+    if (doc.superauth) {
+      return;
+    }
     try {
       await dbService.doc(`pages/${doc.title}`).update({
         content: doc.content,
         updatedAt: firebaseInstance.firestore.Timestamp.now(),
-        history: firebaseInstance.firestore.FieldValue.arrayUnion({ 'name': 'John', 'timeStamp': firebaseInstance.firestore.Timestamp.now() })
+        history: firebaseInstance.firestore.FieldValue.arrayUnion({ 'name': props.userObj.displayName, 'timeStamp': firebaseInstance.firestore.Timestamp.now() })
       });
     }
     catch {
@@ -47,7 +54,7 @@ const Edit = (props, userObj) => {
         await dbService.doc(`pages/${doc.title}`).set({
           content: doc.content,
           updatedAt: firebaseInstance.firestore.Timestamp.now(),
-          history: [{ 'name': 'John', 'timeStamp': firebaseInstance.firestore.Timestamp.now() }]
+          history: [{ 'name': props.userObj.displayName, 'timeStamp': firebaseInstance.firestore.Timestamp.now() }]
         });
       }
       catch(e) {
@@ -60,7 +67,7 @@ const Edit = (props, userObj) => {
   useEffect(() => {
     getDoc();
   }, [props.match.params]);
-  // console.log(props.match.path);
+  // console.log(doc);
 
   return (
     <div>
@@ -71,10 +78,11 @@ const Edit = (props, userObj) => {
         <Doc
           defaultValue={doc.content}
           onChange={onChange}
+          disabled={doc.superauth}
         />
-      </div>
-      <div>
-        <button onClick={onSubmit}>저장</button>
+        <div>
+          {doc.superauth ? <p>수정권한이 부족합니다.</p> : <button onClick={onSubmit}>저장</button>}
+        </div>
       </div>
     </div>
   );
