@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "d7fdfec077b4f5de77b590ffaede2214",
+    "revision": "ffd49ad994d9ffc8b50e0c1483f1a289",
     "url": "/nikipedia/index.html"
   },
   {
