@@ -1,7 +1,6 @@
 import React from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faGoogle, faGithub } from "@fortawesome/free-brands-svg-icons";
 import { authService, firebaseInstance } from "fbase";
+import { xeicon } from "xeicon"
 import AuthForm from "components/AuthForm";
 
 const Auth = (props) => {
@@ -24,10 +23,18 @@ const Auth = (props) => {
       <AuthForm {...props}/>
       <div className="authBtns">
         <button onClick={onSocialClick} name="google" className="authBtn">
-          Continue with Google <FontAwesomeIcon icon={faGoogle} />
+          Continue with Google <xeicon class="xi-google"/>
         </button>
         <button onClick={onSocialClick} name="github" className="authBtn">
-          Continue with Github <FontAwesomeIcon icon={faGithub} />
+          Continue with Github <xeicon class="xi-github"/>
+        </button>
+      </div>
+      <div className="authBtns">
+        <button onClick={onSocialClick} name="naver" className="authBtn">
+          Continue with Naver <xeicon class="xi-naver-square"/>
+        </button>
+        <button onClick={onSocialClick} name="kakao" className="authBtn">
+          Continue with Kakao <xeicon class="xi-kakaotalk"/>
         </button>
       </div>
     </div>
