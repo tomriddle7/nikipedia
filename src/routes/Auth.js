@@ -23,18 +23,18 @@ const Auth = (props) => {
       <AuthForm {...props}/>
       <div className="authBtns">
         <button onClick={onSocialClick} name="google" className="authBtn">
-          Continue with Google <xeicon class="xi-google"/>
+          Continue with Google <xeicon className="xi-google"/>
         </button>
         <button onClick={onSocialClick} name="github" className="authBtn">
-          Continue with Github <xeicon class="xi-github"/>
+          Continue with Github <xeicon className="xi-github"/>
         </button>
       </div>
       <div className="authBtns">
         <button onClick={onSocialClick} name="naver" className="authBtn">
-          Continue with Naver <xeicon class="xi-naver-square"/>
+          Continue with Naver <xeicon className="xi-naver-square"/>
         </button>
         <button onClick={onSocialClick} name="kakao" className="authBtn">
-          Continue with Kakao <xeicon class="xi-kakaotalk"/>
+          Continue with Kakao <xeicon className="xi-kakaotalk"/>
         </button>
       </div>
     </div>
