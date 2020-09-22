@@ -78,7 +78,7 @@ const Edit = (props) => {
         console.log(e);
       }
     }
-    window.location = `/nikipedia/#/w/${doc.title}`;
+    window.location = `/nikipedia/w/${doc.title}`;
   };
 
   useEffect(() => {

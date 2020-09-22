@@ -6,6 +6,7 @@ function App() {
   const [init, setInit] = useState(false);
   const [userObj, setUserObj] = useState(null);
   useEffect(() => {
+    window.Kakao.init(process.env.REACT_APP_KAKAO_APP_KEY_WEB);
     authService.onAuthStateChanged((user) => {
       if (user) {
         setUserObj({

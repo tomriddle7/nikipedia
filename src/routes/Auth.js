@@ -18,6 +18,25 @@ const Auth = (props) => {
     props.history.goBack();
     // console.log(data);
   };
+  const onSocialClick2 = async (event) => {
+    const {
+      target: { name },
+    } = event;
+    if (name === "kakao") {
+      const protocol = window.location.protocol;
+      const hostName = window.location.hostname;
+      const port = window.location.port;
+
+      let url = protocol + '//' + hostName + (port ? ':' + port : '');
+      url += '/callback/kakaotalk';
+
+      window.Kakao.Auth.authorize({
+        redirectUri: url,
+        throughTalk: true
+      });
+    }
+    // console.log(data);
+  };
   return (
     <div className="authContainer">
       <AuthForm {...props}/>
@@ -30,10 +49,10 @@ const Auth = (props) => {
         </button>
       </div>
       <div className="authBtns">
-        <button onClick={onSocialClick} name="naver" className="authBtn">
+        <button onClick={onSocialClick2} name="naver" className="authBtn">
           Continue with Naver <xeicon className="xi-naver-square"/>
         </button>
-        <button onClick={onSocialClick} name="kakao" className="authBtn">
+        <button onClick={onSocialClick2} name="kakao" className="authBtn">
           Continue with Kakao <xeicon className="xi-kakaotalk"/>
         </button>
       </div>
