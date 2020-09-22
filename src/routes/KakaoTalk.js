@@ -23,16 +23,16 @@ const KakaoTalk = (props) => {
         authService.signInWithCustomToken(fireToken)
         .then(function(result) {
 
-          _this.token = kakaoToken;
+          //_this.token = kakaoToken;
           window.Kakao.Auth.setAccessToken(kakaoToken);
 
           const user = result.user;
           console.log("User : ", user);
           if(result.additionalUserInfo.isNewUser) {
             console.log("신규 사용자...");
-            //_this.$router.push("/welcome");   // welcome
+            window.location = `/w/Home`;
           } else {
-            //_this.$router.push("/profile");
+            window.location = `/w/Home`;
           }
         })
         .catch(function(error) {
